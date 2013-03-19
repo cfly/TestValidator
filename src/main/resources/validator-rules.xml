@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE form-validation PUBLIC "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.3.0//EN" "http://jakarta.apache.org/commons/dtds/validator_1_3_0.dtd">
+
+<form-validation>
+	<global>
+	
+		<!-- 必須チェック -->
+		<validator	name="required"
+					classname="org.caofei.Validator"
+					method="validateRequired"
+					methodParams="java.lang.Object, org.apache.commons.validator.Field"
+					msg="HM.BAJ.ERROR.001" />
+
+		<!-- 正規表現パターンチェック -->
+		<validator	name="regexp"
+					classname="org.caofei.Validator"
+					method="validateRegExp"
+					methodParams="java.lang.Object, org.apache.commons.validator.Field"
+					msg="HM.BAJ.ERROR.002" />
+
+		<!-- e-mailアドレスチェック -->
+		<validator	name="email"
+					classname="org.caofei.Validator"
+					method="validateEmail"
+					methodParams="java.lang.Object, org.apache.commons.validator.Field"
+					msg="HM.BAJ.ERROR.003" />
+
+		<!-- 整数チェック -->
+		<validator	name="integer"
+					classname="org.caofei.Validator"
+					method="validateInteger"
+					methodParams="java.lang.Object, org.apache.commons.validator.Field"
+					msg="HM.BAJ.ERROR.004" />
+
+		<!-- 数値範囲チェック -->
+		<validator	name="range"
+					classname="org.caofei.Validator"
+					method="validateRange"
+					methodParams="java.lang.Object, org.apache.commons.validator.Field"
+					msg="HM.BAJ.ERROR.005" />
+
+		<!-- 数値範囲チェック(上限のみ) -->
+		<validator	name="max"
+					classname="org.caofei.Validator"
+					method="validateRange"
+					methodParams="java.lang.Object, org.apache.commons.validator.Field"
+					msg="HM.BAJ.ERROR.006" />
+
+		<!-- 数値範囲チェック(下限のみ) -->
+		<validator	name="min"
+					classname="org.caofei.Validator"
+					method="validateRange"
+					methodParams="java.lang.Object, org.apache.commons.validator.Field"
+					msg="HM.BAJ.ERROR.007" />
+
+		<!-- 文字列長チェック -->
+		<validator	name="length"
+					classname="org.caofei.Validator"
+					method="validateLength"
+					methodParams="java.lang.Object, org.apache.commons.validator.Field"
+					msg="HM.BAJ.ERROR.008" />
+
+		<!-- 文字列長チェック(上限のみ) -->
+		<validator	name="lengthMax"
+					classname="org.caofei.Validator"
+					method="validateLength"
+					methodParams="java.lang.Object, org.apache.commons.validator.Field"
+					msg="HM.BAJ.ERROR.009" />
+
+		<!-- 文字列長チェック(下限のみ) -->
+		<validator	name="lengthMin"
+					classname="org.caofei.Validator"
+					method="validateLength"
+					methodParams="java.lang.Object, org.apache.commons.validator.Field"
+					msg="HM.BAJ.ERROR.010" />
+
+		<!-- 日付形式チェック -->
+		<validator	name="date"
+					classname="org.caofei.Validator"
+					method="validateDate"
+					methodParams="java.lang.Object, org.apache.commons.validator.Field"
+					msg="HM.BAJ.ERROR.011" />
+
+		<!-- 日付範囲チェック -->
+		<validator	name="dateRange"
+					classname="org.caofei.Validator"
+					method="validateDateRange"
+					methodParams="java.lang.Object, org.apache.commons.validator.Field"
+					msg="HM.BAJ.ERROR.012" />
+
+		<!-- 日付範囲チェック(上限のみ) -->
+		<validator	name="dateTo"
+					classname="org.caofei.Validator"
+					method="validateDateRange"
+					methodParams="java.lang.Object, org.apache.commons.validator.Field"
+					msg="HM.BAJ.ERROR.013" />
+
+		<!-- 日付範囲チェック(下限のみ) -->
+		<validator	name="dateFrom"
+					classname="org.caofei.Validator"
+					method="validateDateRange"
+					methodParams="java.lang.Object, org.apache.commons.validator.Field"
+					msg="HM.BAJ.ERROR.014" />
+
+		<!-- 選択数チェック -->
+		<validator	name="select"
+					classname="org.caofei.Validator"
+					method="validateSelect"
+					methodParams="java.lang.Object, org.apache.commons.validator.Field"
+					msg="HM.BAJ.ERROR.015" />
+
+		<!-- 選択数チェック(上限のみ) -->
+		<validator	name="selectMax"
+					classname="org.caofei.Validator"
+					method="validateSelect"
+					methodParams="java.lang.Object, org.apache.commons.validator.Field"
+					msg="HM.BAJ.ERROR.016" />
+
+		<!-- 選択数チェック(下限のみ) -->
+		<validator	name="selectMin"
+					classname="org.caofei.Validator"
+					method="validateSelect"
+					methodParams="java.lang.Object, org.apache.commons.validator.Field"
+					msg="HM.BAJ.ERROR.017" />
+
+	</global>
+</form-validation>
