@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE form-validation PUBLIC "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.3.0//EN" "http://jakarta.apache.org/commons/dtds/validator_1_3_0.dtd">
+
+<form-validation>
+	<!-- <global> <validator classname="" depends="" jsFunction="" jsFunctionName="" 
+		method="" methodParams="" msg="" name=""> <javascript>javascript</javascript> 
+		</validator> <constant> <constant-name>constant-name</constant-name> <constant-value>constant-value</constant-value> 
+		</constant> </global> <formset country="" language="" variant=""> <constant> 
+		<constant-name>constant-name</constant-name> <constant-value>constant-value</constant-value> 
+		</constant> <form extends="" name=""> <field depends="" indexedListProperty="" 
+		page="" property=""> <msg bundle="" key="" name="" resource=""/> </field> 
+		</form> </formset> -->
+	<formset>
+		<form name="Person">
+			<field property="id" depends="required">
+			<arg key="HM.BAJ.CAP.baj_dept_frm_register.nndbDenwa" />
+			</field>
+			<field property="name" depends="required">
+			<arg key="HM.BAJ.CAP.baj_dept_frm_register.nndbDenwa" />
+			</field>
+			<field property="age" depends="required,integer">
+			<arg key="HM.BAJ.CAP.baj_dept_frm_register.nndbDenwa" />
+			</field>
+		</form>
+	</formset>
+</form-validation>
