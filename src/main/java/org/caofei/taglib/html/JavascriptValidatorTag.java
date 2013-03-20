@@ -18,7 +18,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.struts.taglib.html;
+package org.caofei.taglib.html;
 
 import java.io.IOException;
 import java.util.ArrayList;
