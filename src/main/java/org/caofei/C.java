@@ -3,6 +3,7 @@ package org.caofei;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Set;
 
 import org.apache.commons.io.IOUtils;
@@ -22,7 +23,9 @@ public class C {
 	 */
 	public static void main(String[] args) {
 		Person person = new Person();
-
+		person.setId("dasd");
+		person.setName("caof");
+		person.setAge("32");
 		try {
 			String[] xmls = { "/validation.xml", "/validator-rules.xml" };
 			InputStream[] uri = new InputStream[xmls.length];
@@ -33,6 +36,7 @@ public class C {
 
 			ValidatorResources resources;
 			resources = new ValidatorResources(uri);
+			System.out.println(resources.getValidatorAction("required").getJavascript());
 			Validator validator = new Validator(resources, "Person");
 			validator.setParameter(Validator.BEAN_PARAM, person);
 			ValidatorResults validatorResults = validator.validate();
@@ -51,16 +55,18 @@ public class C {
 	}
 
 	private static void printResult(ValidatorResults validatorResults, ValidatorResources resources) {
-		Set<String> names = validatorResults.getPropertyNames();
-		for (String key : names) {
-			ValidatorResult vr = validatorResults.getValidatorResult(key);
-			Iterator actions = vr.getActions();
-			while (actions.hasNext()) {
-				String object = (String) actions.next();
-				ValidatorAction va = resources.getValidatorAction(object);
-				System.out.println(vr.isValid(object));
-			}
-		}
+		Map rvm = validatorResults.getResultValueMap();
+		System.out.println(rvm);
+//		Set<String> names = validatorResults.getPropertyNames();
+//		for (String key : names) {
+//			ValidatorResult vr = validatorResults.getValidatorResult(key);
+//			Iterator actions = vr.getActions();
+//			while (actions.hasNext()) {
+//				String object = (String) actions.next();
+//				ValidatorAction va = resources.getValidatorAction(object);
+//				System.out.println(vr.isValid(object));
+//			}
+//		}
 	}
 
 }
