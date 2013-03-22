@@ -17,10 +17,23 @@
 			</field>
 			<field property="name" depends="required">
 			<arg key="HM.BAJ.CAP.baj_dept_frm_register.nndbDenwa" />
+			<msg name="msgName" key="msgKey"/>
+			<var>
+				<var-name>varName</var-name>
+				<var-value>varValue</var-value>
+			</var>
 			</field>
 			<field property="age" depends="required,integer">
 			<arg key="HM.BAJ.CAP.baj_dept_frm_register.nndbDenwa" />
 			</field>
+			<field property="prop1" depends="required,integer" indexedListProperty="personList">
+			<arg key="HM.BAJ.CAP.baj_dept_frm_register.nndbDenwa" />
+			</field>
+			<field property="prop2" depends="required,regexp" indexedListProperty="personList">
+			<arg key="HM.BAJ.CAP.baj_dept_frm_register.nndbDenwa" />
+			</field>
+			
+			
 		</form>
 	</formset>
 </form-validation>
