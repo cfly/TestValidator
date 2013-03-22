@@ -2,18 +2,18 @@ package org.caofei;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Iterator;
+import java.util.List;
+import java.util.Locale;
 import java.util.Map;
-import java.util.Set;
 
-import org.apache.commons.io.IOUtils;
+import org.apache.commons.validator.Field;
+import org.apache.commons.validator.Form;
 import org.apache.commons.validator.Validator;
-import org.apache.commons.validator.ValidatorAction;
 import org.apache.commons.validator.ValidatorException;
 import org.apache.commons.validator.ValidatorResources;
-import org.apache.commons.validator.ValidatorResult;
 import org.apache.commons.validator.ValidatorResults;
 import org.caofei.bean.Person;
+import org.json.JSONObject;
 import org.xml.sax.SAXException;
 
 public class C {
@@ -36,6 +36,12 @@ public class C {
 
 			ValidatorResources resources;
 			resources = new ValidatorResources(uri);
+			
+			Form form = resources.getForm(Locale.getDefault(), "Person");
+			List<Field> fields = form.getFields();
+			System.out.println(JSONObject.wrap(fields));
+			
+			
 			System.out.println(resources.getValidatorAction("required").getJavascript());
 			Validator validator = new Validator(resources, "Person");
 			validator.setParameter(Validator.BEAN_PARAM, person);
