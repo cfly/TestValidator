@@ -107,3 +107,4 @@ var required=function(vr) {
 var errorStyle=function(obj) {
 	obj.style='color:ee0000';
 };
+v();
