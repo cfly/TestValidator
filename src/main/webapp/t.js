@@ -83,7 +83,8 @@ var vrs = [
     }
 ]
 ;
-var v=function(argument) {
+var vrr=[];
+var validate=function(argument) {
 	// body...
 	for (var i=0; i < vrs.length; i++) {
 		var vr = vrs[i];
@@ -92,19 +93,61 @@ var v=function(argument) {
 };
 var dealvr=function(vr) {
 	var result = true;
-	for (var i=0; i < vr.fependencyList.length; i++) {
-		result = resule && eval(vr.fependencyList[i])(vr);
+	for (var i=0; i < vr.dependencyList.length; i++) {
+		result = result && eval(vr.dependencyList[i])(vr);
 	};
 	return result;
 };
+var $$$=function(vr){
+	var field = $(vr.property);
+	if(!field){
+		field=$$('input[name="' + vr.property + '"]');
+		if(field&&field.length==1){
+			field = field[0];
+		}else{
+			
+		}
+	}
+	return field;
+}
 var required=function(vr) {
+	var field = $$$(vr);
+	if(field){
+		if(vr.indexed){
+			//TODO:
+		}else{
+			return !/^\s*$/.test(field.value) || handelerr(vr, field);// errorStyle(field);
+		}
+	}
+}
+var integer=function(vr) {
+	var field = $$$(vr);
+	if(field){
+		if(vr.indexed){
+			//TODO:
+		}else{
+			return /^\d+$/.test(field.value) || handelerr(vr, field);
+		}
+	}
+}
+var regexp=function(vr) {
+	var field = $$$(vr);
 	if(vr.indexed){
 		//TODO:
 	}else{
-		return /^\s*$/.test($(vr.property).value) || errorStyle($(vr.property));
+		//return /^\d*$/.test($(vr.property).value) || errorStyle($(vr.property));
+		alert('regexp Validate');
 	}
 };
+var handelerr=function(vr, field){
+	vrr.push(vr.messages);
+	errorStyle(field);
+}
 var errorStyle=function(obj) {
-	obj.style='color:ee0000';
+	//obj.style='color:ee0000';
+	$(obj).setStyle({
+	  'background-color': '#ee0000'
+	  //fontSize: '12px'
+	});
 };
-v();
+validate();
