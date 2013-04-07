@@ -39,10 +39,13 @@ public class C {
 			
 			Form form = resources.getForm(Locale.getDefault(), "Person");
 			List<Field> fields = form.getFields();
+			for (Field field : fields) {
+				System.out.println(field.getMessages());
+			}
 			System.out.println(JSONObject.wrap(fields));
 			
 			
-			System.out.println(resources.getValidatorAction("required").getJavascript());
+//			System.out.println(resources.getValidatorAction("required").getJavascript());
 			Validator validator = new Validator(resources, "Person");
 			validator.setParameter(Validator.BEAN_PARAM, person);
 			ValidatorResults validatorResults = validator.validate();
