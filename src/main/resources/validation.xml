@@ -12,10 +12,12 @@
 		</form> </formset> -->
 	<formset>
 		<form name="Person">
-			<field property="id" depends="required">
+			<field property="id" depends="required,integer">
 			<arg key="HM.BAJ.CAP.baj_dept_frm_register.nndbDenwa" />
+			<arg key="${var:minlength}" resource="false" position="1"/>
+			<arg name="required" key="必須入力チェック" position="0"/>
 			</field>
-			<field property="name" depends="required">
+			<field property="name" depends="required" indexedListProperty="nest">
 			<arg key="HM.BAJ.CAP.baj_dept_frm_register.nndbDenwa" />
 			<msg name="msgName" key="msgKey"/>
 			<var>
@@ -23,6 +25,7 @@
 				<var-value>varValue</var-value>
 			</var>
 			</field>
+			<!--
 			<field property="age" depends="required,integer">
 			<arg key="HM.BAJ.CAP.baj_dept_frm_register.nndbDenwa" />
 			</field>
@@ -32,7 +35,7 @@
 			<field property="prop2" depends="required,regexp" indexedListProperty="personList">
 			<arg key="HM.BAJ.CAP.baj_dept_frm_register.nndbDenwa" />
 			</field>
-			
+			-->
 			
 		</form>
 	</formset>
