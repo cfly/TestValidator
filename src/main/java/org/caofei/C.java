@@ -2,12 +2,14 @@ package org.caofei;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
 import org.apache.commons.validator.Field;
 import org.apache.commons.validator.Form;
+import org.apache.commons.validator.Msg;
 import org.apache.commons.validator.Validator;
 import org.apache.commons.validator.ValidatorException;
 import org.apache.commons.validator.ValidatorResources;
@@ -22,6 +24,7 @@ public class C {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		System.out.println(MessageUtils.getMessage("HM.BAJ.ERROR.001"));
 		Person person = new Person();
 		person.setId("dasd");
 		person.setName("caof");
@@ -36,28 +39,43 @@ public class C {
 
 			ValidatorResources resources;
 			resources = new ValidatorResources(uri);
-			
+
 			Form form = resources.getForm(Locale.getDefault(), "Person");
+//			populateMessage(form);
 			List<Field> fields = form.getFields();
+			List<Fieldex> fieldexs = new LinkedList<Fieldex>();
 			for (Field field : fields) {
-				System.out.println(field.getMessages());
+				fieldexs.add(new Fieldex(field));
 			}
-			System.out.println(JSONObject.wrap(fields));
-			
-			
+			for (Fieldex fieldex : fieldexs) {
+				List<String> detDependencyList = fieldex.getDependencyList();
+				for (String dependency : detDependencyList) {
+					String msgs = resources.getValidatorAction(dependency).getMsg();
+					System.out.println(msgs);
+					fieldex.getMessageMap().put(dependency, MessageUtils.getMessage(msgs));
+//					Msg msg = new Msg();
+//					msg.setResource(false);
+//					msg.setKey(MessageUtils.getMessage(msgs));
+//					msg.setName("name");
+//					fieldex.addMsg(msg);
+					
+//					System.out.println(dependency);
+//					System.out.println(resources.getValidatorAction(dependency).getMsg());
+				}
+//				System.out.println(field.getMessages());
+			}
+			System.out.println(JSONObject.wrap(fieldexs));
+
 //			System.out.println(resources.getValidatorAction("required").getJavascript());
-			Validator validator = new Validator(resources, "Person");
-			validator.setParameter(Validator.BEAN_PARAM, person);
-			ValidatorResults validatorResults = validator.validate();
-			printResult(validatorResults,resources);
+//			Validator validator = new Validator(resources, "Person");
+//			validator.setParameter(Validator.BEAN_PARAM, person);
+//			ValidatorResults validatorResults = validator.validate();
+//			printResult(validatorResults,resources);
 //			System.out.println(validatorResults.getResultValueMap());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SAXException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ValidatorException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
