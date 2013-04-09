@@ -74,7 +74,7 @@ var required=function(vr) {
 		for(var i = 0;;i++){
 			field = $$$(property[1] + i + property[2]);
 			if(field){
-				forResult = forResult&&!/^\s*$/.test(field.value) && clearErr(field) || handelErr(vr, field, vr.messageMap.required);
+				!/^\s*$/.test(field.value) && clearErr(field) || handelErr(vr, field, vr.messageMap.required);
 			}else{
 				break;
 			}
@@ -89,22 +89,49 @@ var required=function(vr) {
  * integer
  */
 var integer=function(vr) {
-	var field = $$$(vr.property);
-	if(field){
-		if(vr.indexed){
-			//TODO:
-		}else{
-			return /^\d+$/.test(field.value) && clearErr(field) || handelErr(vr, field, vr.messageMap.integer);
+	var field;
+	if(vr.indexed){
+		var property = /(.*\[).*(\].*)/.exec(vr.key);
+		if(!property){
+			alert(vr.property + ' error at indexed properties');
+			return;
 		}
+		var forResult=true;
+		for(var i = 0;;i++){
+			field = $$$(property[1] + i + property[2]);
+			if(field){
+				/^\d+$/.test(field.value) && clearErr(field) || handelErr(vr, field, vr.messageMap.required);
+			}else{
+				break;
+			}
+		}
+		return forResult;
+	}else{
+		field = $$$(vr.property);
+		return /^\d+$/.test(field.value) && clearErr(field) || handelErr(vr, field, vr.messageMap.required);
 	}
 }
 var regexp=function(vr) {
-	var field = $$$(vr.property);
+	var field;
 	if(vr.indexed){
-		//TODO:
+		var property = /(.*\[).*(\].*)/.exec(vr.key);
+		if(!property){
+			alert(vr.property + ' error at indexed properties');
+			return;
+		}
+		var forResult=true;
+		for(var i = 0;;i++){
+			field = $$$(property[1] + i + property[2]);
+			if(field){
+				/^\d+$/.test(field.value) && clearErr(field) || handelErr(vr, field, vr.messageMap.required);
+			}else{
+				break;
+			}
+		}
+		return forResult;
 	}else{
-		//return /^\d*$/.test($(vr.property).value) || errorStyle($(vr.property));
-		alert('regexp Validate');
+		field = $$$(vr.property);
+		return /^\d+$/.test(field.value) && clearErr(field) || handelErr(vr, field, vr.messageMap.required);
 	}
 };
 var handelErr=function(vr, field, msg){
