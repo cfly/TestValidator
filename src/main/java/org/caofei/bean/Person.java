@@ -10,7 +10,13 @@ public class Person {
 	private String id;
 	private String name;
 	private String age;
-	
+	private Nest nest;
+	public Nest getNest() {
+		return nest;
+	}
+	public void setNest(Nest nest) {
+		this.nest = nest;
+	}
 	private List<PersonDetail> personList = LazyList.decorate(new LinkedList<PersonDetail>() ,new InstantiateFactory(PersonDetail.class));
 	
 	

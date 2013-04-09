@@ -12,9 +12,11 @@
 		</form> </formset> -->
 	<formset>
 		<form name="Person">
-			<field property="id" depends="required,integer">
+			<field property="id" depends="required,integer,range">
 			<arg key="HM.BAJ.CAP.baj_dept_frm_register.nndbDenwa" />
 			<arg key="${var:minlength}" resource="false" position="1"/>
+			<var><var-name>min</var-name><var-value>1</var-value></var>
+			<var><var-name>max</var-name><var-value>3</var-value></var>
 			<arg name="required" key="必須入力チェック" position="0"/>
 			</field>
 			<field property="name" depends="required" indexedListProperty="nest">

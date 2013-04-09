@@ -3,25 +3,25 @@ package org.caofei;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.validator.Field;
+import org.apache.commons.validator.Var;
 
 public class Fieldex extends Field {
 	public Fieldex(Field field) {
 		try {
-			BeanUtils.copyProperties(this, BeanUtils.cloneBean(field));
+			Field fieldClone = (Field) field.clone();
+			BeanUtils.copyProperties(this, fieldClone);
+			Map varMap = fieldClone.getVars();
+			Set<String> keySet = varMap.keySet();
+			for (String key : keySet) {
+				this.addVar((Var) varMap.get(key));
+			}
 		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NoSuchMethodException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
