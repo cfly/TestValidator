@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import org.apache.commons.validator.Arg;
 import org.apache.commons.validator.Field;
 import org.apache.commons.validator.Form;
 import org.apache.commons.validator.Msg;
@@ -14,6 +15,7 @@ import org.apache.commons.validator.Validator;
 import org.apache.commons.validator.ValidatorException;
 import org.apache.commons.validator.ValidatorResources;
 import org.apache.commons.validator.ValidatorResults;
+import org.apache.commons.validator.Var;
 import org.caofei.bean.Person;
 import org.json.JSONObject;
 import org.xml.sax.SAXException;
@@ -41,7 +43,6 @@ public class C {
 			resources = new ValidatorResources(uri);
 
 			Form form = resources.getForm(Locale.getDefault(), "Person");
-//			populateMessage(form);
 			List<Field> fields = form.getFields();
 			List<Fieldex> fieldexs = new LinkedList<Fieldex>();
 			for (Field field : fields) {
@@ -49,6 +50,11 @@ public class C {
 			}
 			for (Fieldex fieldex : fieldexs) {
 				List<String> detDependencyList = fieldex.getDependencyList();
+				String key = MessageUtils.getMessage(fieldex.getProperty());
+				Var v = new Var();
+				v.setName("property");
+				v.setValue(MessageUtils.getMessage(fieldex.getProperty()));
+				fieldex.addVar(v);
 				for (String dependency : detDependencyList) {
 					String msgs = resources.getValidatorAction(dependency).getMsg();
 					System.out.println(MessageUtils.getMessage(msgs));
@@ -67,16 +73,12 @@ public class C {
 			System.out.println(JSONObject.wrap(fieldexs));
 
 //			System.out.println(resources.getValidatorAction("required").getJavascript());
-//			Validator validator = new Validator(resources, "Person");
-//			validator.setParameter(Validator.BEAN_PARAM, person);
-//			ValidatorResults validatorResults = validator.validate();
-//			printResult(validatorResults,resources);
+			Validator validator = new Validator(resources, "Person");
+			validator.setParameter(Validator.BEAN_PARAM, person);
+			ValidatorResults validatorResults = validator.validate();
+			printResult(validatorResults,resources);
 //			System.out.println(validatorResults.getResultValueMap());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SAXException e) {
-			// TODO Auto-generated catch block
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
