@@ -24,7 +24,7 @@ public class C {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		System.out.println(MessageUtils.getMessage("HM.BAJ.ERROR.001"));
+//		System.out.println(MessageUtils.getMessage("HM.BAJ.ERROR.001"));
 		Person person = new Person();
 		person.setId("dasd");
 		person.setName("caof");
@@ -51,7 +51,7 @@ public class C {
 				List<String> detDependencyList = fieldex.getDependencyList();
 				for (String dependency : detDependencyList) {
 					String msgs = resources.getValidatorAction(dependency).getMsg();
-					System.out.println(msgs);
+					System.out.println(MessageUtils.getMessage(msgs));
 					fieldex.getMessageMap().put(dependency, MessageUtils.getMessage(msgs));
 //					Msg msg = new Msg();
 //					msg.setResource(false);
